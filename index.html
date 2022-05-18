@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SchroWave</title>
+    <title>Schron</title>
 
     <!-- Bootstrap core CSS -->
     <link href="src/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
 
 <header class="bg-dark text-white">
       <div class="container text-center">
-        <h1>DEMO of SchroWave</h1>
+        <h1>DEMO of Schron</h1>
 		<p class="lead" align="justify">
             Anonymous.  
                 </p>
@@ -33,258 +33,32 @@
         <div class="row">
           <div class="col-md-15 mx-auto">
             <p class="lead" align="justify">
-            This demo introduces SchroWave, which can generate realistic singing voice with given middle voice features, e.g. mel-spectrogram as input. 
+            This demo introduces Schron, which is an end-to-end speech synthesis based on deep
+conditional Schrödinger bridges. 
                 </p><p class="lead" align="justify">
-                In recent years, methods based on discrete diffusion models have achieved 
-  state-of-the-art performances in voice 
-  generation. 
-  In theory, the voice data can be transformed into the exact Gaussian prior distributions 
-  only when the diffusion 
-  time tends to infinity. But in real 
-  applications,
-   the Gaussian prior distribution can only be achieved approximately in a limited time duration run by these 
-   diffusion-based methods, thus 
-   resulting in sub-optimal sound quality. 
-    In this paper, we present the SchroWave to realize the continuous transformation 
-    from  exact Dirac’s deltas 
-    to the target voice data distribution  
-    in finite time duration, 
-    conditioned on middle voice representation with different size.
-    At the same time, in order to overcome the difficulty in calculating the 
-    score on the low-dimensional manifold of voice data during the 
-    generation process, we propose 
-    to use a two-stage diffusion and generation method, while each stage implemented by 
-    solving a
-    conditional Schrodinger bridge problem. 
-    Our experiments on the public data set LJSpeech show that the effect is significant
-    in both objective and subjective evaluation, 
-    and achieve the new state-of-the-art MOS of 4.53. 
+                  Speech synthesis plays an important role in human-computer interaction.
+  Existing methods mainly employ traditional two-stage pipeline, e.g. 
+  text-to-speech and vocoder. 
+  In this paper, we propose a system called Schron, which can generate 
+  speech waves in an end-to-end mamaner by solving Schrodinger bridge problems (SBP). 
+  In order to make SBP suitable for speech synthesis, we generalize SBP from two aspects. 
+  The first generalization makes it possible to accept condition variables, 
+  which are used to control the generated speech, 
+  and the second generalization allows it to handle variable-size input.
+  Besides these two generalizations, we propose two techniques to fill the large information gap 
+  between text and speech waveforms for generating high-quality 
+  voice. The first technique is 
+  to use a text-mel joint representation as the conditional input of the conditional SBP. 
+  The second one is to use a branch network for the generation of mel scores as a 
+  regularization, so that the text features will not be degenerated.
+  Experimental results show that Schron achieves 
+  state-of-the-art MOS of 4.52 on public data set LJSpeech.
 		  </p><p class="lead" align="justify">
 
 
 </section>
 
-    <br>  </br>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-8">
-                    <h3>Frameworks, pipelines, modules, and algorithms in SchroWave</h3>				
-					</p><p class="lead" align="justify">
-			  Example of two-stage wave generation in SchroWave. In the first stage, 
-  the data from the Dirac's distribution is transformed into 
-  the noisy target wave distributed over the whole ambient Euclidean space; 
-  in the second stage, 
-  the noisy wave is mapped into the distribution of clean target voice.
-              </p><p class="lead" align="justify">
-                    <img src="src/diagram_of_two-stage_waveform_generation.jpg" alt="Italian Trulli" width="750px">
-                    <br>  </br> 
-					</p><p class="lead" align="justify">
-			    The density ratio evolves with the diffusion step.
-              </p><p class="lead" align="justify">
-			  <img src="src/density_ratio_change.png" alt="Italian Trulli" width="400px">
-	      </p><p class="lead" align="justify">
-			   The density ratio prediction network in SchroWave.
-              </p><p class="lead" align="justify">
-			  <img src="src/density_ratio_network_schrowave.jpg" alt="Italian Trulli" width="400px">
-	      </p><p class="lead" align="justify">
-			   The score prediction network in SchroWave. 
-              </p><p class="lead" align="justify">
-			  <img src="src/the_general_score_network_schrowave.jpg" alt="Italian Trulli" width="400px">
-	      </p><p class="lead" align="justify">
-			    Parallel voice segmentation and diffusion.
-              </p><p class="lead" align="justify">
-			  <img src="src/parallel_split_generation.jpg" alt="Italian Trulli" width="500px">
-	       </p><p class="lead" align="justify">
-			     Modules in score prediction network. (a) Time step embedding; (b) the residual block; 
-      (c) mel-spectrogram up-sampling. 
-              </p><p class="lead" align="justify">
-			  <img src="src/time_residual_spec.jpg" alt="Italian Trulli" width="750px">
-	       </p><p class="lead" align="justify">
-			  Two stages of wave generation in Schr\"oWave.
-  (a)The generation steps of the noisy wave from Dirac distribution in the first stage. 
-  (b)The generation steps of the clean wave from the noisy wave in the second stage.
-              </p><p class="lead" align="justify">
-			  <img src="src/stage1_diffusion_wave.png" alt="Italian Trulli" width="400px">
-	       <img src="src/stage2_diffusion_wave.png" alt="Italian Trulli" width="400px">
-                </div>
-              </div>
-              <br>  </br>
-              <br>  </br>
-              </div>
-            </div>
-
-        </div>
-      </div>
-    </section>
-
-
-
-     <section id="samples" class="bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-13 mx-auto">
-
- <h3>Singing samples</h3>	
-
-            <p class="lead" align="justify">
-               Please check the following singing voice samples synthesized by RealSinger and other compared systems. The corresponding lyrics are as follows:
-            </p>
-            <style type="text/css">
-                .tg  {border-collapse:collapse;border-spacing:0;}
-                .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                .tg .tg-oe15{background-color:#f8f9fa;border-color:#f8f9fa;text-align:center;vertical-align:top}
-                audio { width: 130px; }
-            </style>
-
-			<p class="lead" align="justify">
-               1. but they proceeded in all seriousness, and would have shrunk from no outrage or atrocity in furtherance of their foolhardy enterprise.
-            </p>
-			<p class="lead" align="justify">
-               2. three cars for press photographers, an official party bus for white house staff members and others, and two press buses.
-            </p>
-			<p class="lead" align="justify">
-               3. a base station at a fixed location in dallas operated a radio network which linked together the lead car,
-            </p>
-			<p class="lead" align="justify">
-               4. the lifting had been so complete in this case that there was no trace of the print on the rifle itself when it was examined by latona.
-            </p>
-			<p class="lead" align="justify">
-               5. with the active cooperation of the responsible agencies and with the understanding of the people of the united states in their demands upon their president,
-            </p>
-              <br>  </br>
-
-	      
-	       <center>
-            <h3>Comparison between SchroWave and other systems</h3>
-            <p></p>
-            <p></p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Ground truth</th>
-                  <th>WaveGlow</th>
-				  <th>ItoWave</th>
-				  <th>DiffWave</th>
-			<th>WaveNet</th>
-				  <th>SchroWave</th>
-                </tr>
-              </thead>
-              <tbody>
-					 <tr style="border-top:1px solid black">
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/groundtruth/LJ010-0062.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/waveglow/LJ010-0062.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/itowave/LJ010-0062.wav"
-                        type="audio/wav"></audio></td>
-						<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/diffwave/LJ010-0062.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/wavenet/LJ010-0062.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/schrowave/LJ010-0062.wav"
-                        type="audio/wav"></audio></td>
-                </tr>
-		      
-			 <tr style="border-top:1px solid black">
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/groundtruth/LJ030-0100.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/waveglow/LJ030-0100.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/itowave/LJ030-0100.wav"
-                        type="audio/wav"></audio></td>
-						<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/diffwave/LJ030-0100.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/wavenet/LJ030-0100.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/schrowave/LJ030-0100.wav"
-                        type="audio/wav"></audio></td>
-                </tr>
-		      
-				 <tr style="border-top:1px solid black">
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/groundtruth/LJ030-0106.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/waveglow/LJ030-0106.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/itowave/LJ030-0106.wav"
-                        type="audio/wav"></audio></td>
-						<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/diffwave/LJ030-0106.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/wavenet/LJ030-0106.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/schrowave/LJ030-0106.wav"
-                        type="audio/wav"></audio></td>
-                </tr>
-		      
-				 <tr style="border-top:1px solid black">
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/groundtruth/LJ032-0137.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/waveglow/LJ032-0137.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/itowave/LJ032-0137.wav"
-                        type="audio/wav"></audio></td>
-						<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/diffwave/LJ032-0137.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/wavenet/LJ032-0137.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/schrowave/LJ032-0137.wav"
-                        type="audio/wav"></audio></td>
-                </tr>
-		      
-				 <tr style="border-top:1px solid black">
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/groundtruth/LJ050-0277.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/waveglow/LJ050-0277.wav"
-                        type="audio/wav"></audio></td>
-                  <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/itowave/LJ050-0277.wav"
-                        type="audio/wav"></audio></td>
-						<td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/diffwave/LJ050-0277.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/wavenet/LJ050-0277.wav"
-                        type="audio/wav"></audio></td>
-						 <td><audio controls class="audio-player" preload="metadata" style="width: 180px;">
-                      <source src="src/schrowave/LJ050-0277.wav"
-                        type="audio/wav"></audio></td>
-                </tr>
-
-	
-              </tbody>
-            </table>
-
-        
-          </div>
-        </div>
-      </div>
-
+    
 	
 	
 	
@@ -301,7 +75,7 @@
           <div class="col-lg-13 mx-auto">
               <p class="lead" align="justify">
 		  <p class="lead" align="justify">
-			    [1]. Anonymous. SchroWave: Realistic Voice Generation by Solving Two-Stage Conditional Schrodinger Bridge Problems.
+			    [1]. Anonymous. End-to-End Speech Synthesis Based on Deep Conditional Schr\"odinger Bridges.
                     </p>
               </p>
           </div>
